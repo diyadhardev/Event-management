@@ -1,0 +1,63 @@
+/* ============================================
+   CENTRALIZED COLOR PALETTE
+   ============================================
+   This file contains all the colors used across the application.
+   Use these CSS variables in your component styles to maintain
+   consistency and make global color changes easier.
+   ============================================ */
+
+:root {
+    /* Primary Colors */
+    --color-primary: #ff7a45;
+    --color-primary-light: #ff8a50;
+    --color-primary-lighter: #ff9960;
+
+    /* Secondary Colors */
+    --color-secondary: #1a1a1a;
+    --color-secondary-light: #424242;
+    --color-secondary-lighter: #757575;
+
+    /* Neutral Colors */
+    --color-neutral-white: #ffffff;
+    --color-neutral-light-gray: #fafafa;
+    --color-neutral-gray: #e8e8e8;
+    --color-neutral-dark-gray: #d0d0d0;
+    --color-neutral-border: #bdbdbd;
+    --color-neutral-text: #1a1a1a;
+    --color-neutral-placeholder: #bdbdbd;
+
+    /* Background Colors */
+    --color-bg-primary: #f5f5f5;
+    --color-bg-secondary: #e8e8e8;
+    --color-bg-card: #ffffff;
+    --color-bg-input: #fafafa;
+
+    /* State Colors */
+    --color-error: #d32f2f;
+    --color-success: #388e3c;
+    --color-warning: #f57c00;
+    --color-info: #1976d2;
+
+    /* Gradient Colors */
+    --color-gradient-primary-start: #ff8a50;
+    --color-gradient-primary-end: #ff7a45;
+
+    /* Semantic Colors */
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #424242;
+    --color-text-tertiary: #757575;
+    --color-text-hint: #bdbdbd;
+    --color-text-disabled: #ccc;
+
+    /* Border Colors */
+    --color-border-light: #d0d0d0;
+    --color-border-default: #bdbdbd;
+    --color-border-hover: #bdbdbd;
+    --color-border-focus: #ff7a45;
+
+    /* Shadow Colors */
+    --color-shadow-light: rgba(0, 0, 0, 0.1);
+    --color-shadow-dark: rgba(0, 0, 0, 0.06);
+    --color-shadow-primary: rgba(255, 122, 69, 0.3);
+    --color-shadow-primary-focus: rgba(255, 122, 69, 0.1);
+}
