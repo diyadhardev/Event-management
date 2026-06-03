@@ -1,0 +1,13 @@
+@else{
+<div class="list-view">
+    <img [src]="event.image" alt="{{ event.name }}" class='event-image-list' />
+    <div id="event-name-list">{{ event.name }}</div>
+    <div class="event-subdetails-list">{{ event.date | date: 'longDate' }}</div>
+    <div class="event-subdetails">{{ event.category }}
+    </div>
+    <div class="event-actions-list">
+        <button class="action-btn-list" (click)="editEvent(event)">✎</button>
+        <button class="action-btn-list" (click)="deleteEvent(event)">🗑️</button>
+    </div>
+</div>
+}

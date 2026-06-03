@@ -11,37 +11,89 @@
         </header>
         <!-- main content here -->
         <section class="content">
-            <div class="main-heading">Events</div>
-            <div class="sub-heading">View and manage every events of the future.</div>
-        </section>
+            <div class="header-section">
+                <div class="header-title">
+                    <h4 class="main-heading">Events</h4>
+                    <p class="sub-heading">View and manage every events of the future.</p>
+                </div>
 
-        <div class="event-list">
-            @for(event of events; track event.id) {
-            <div class="event-card">
-                <img [src]="event.image" alt="{{ event.name }}" class="event-image" />
-                <div class="event-details">
-                    <h4>{{ event.name }}</h4>
-                    <p>{{ event.date | date: 'longDate' }}</p>
-                    <span class="category">{{ event.category }}</span>
+                <div class="header-actions">
+                    <button class="header-btn">Filter</button>
+                    <button class="header-btn" (click)="toggleView()">{{otherViewType}}</button>
+                    <button class="header-btn add-new-btn" (click)="addNewEvent()">Add New Event</button>
                 </div>
-                <div class="event-actions">
-                    <button class="btn btn-secondary" (click)="editEvent(event)">Edit</button>
-                    <button class="btn btn-danger" (click)="deleteEvent(event)">Delete</button>
+            </div>
+
+
+            <div [ngClass]="{'card-view': eventsViewType === EventsViewTypes.CARD_VIEW}">
+                @if(eventsViewType === EventsViewTypes.CARD_VIEW) {
+                @for(event of events; track event.id) {
+                <div class="event-card">
+                    <div class="card-main">
+                        <img [src]="event.image" alt="{{ event.name }}" class='event-image-card' />
+                        <div class="card-footer">
+                            <div class="card-footer-list">
+                                <div id="event-name">{{ event.name }}</div>
+                                <div class="card-sub">
+                                    <span class="event-subdetails">{{ event.category }}</span>
+                                    <div class="event-subdetails">{{ event.date | date: 'longDate' }}</div>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="action-btn" (click)="editEvent(event)">✎</button>
+                                <button class="action-btn" (click)="deleteEvent(event)">🗑️</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>}
-            @empty(){
-            <div class="no-content">
-                <img src="assets /no-events.png" alt="No Events" class="no-content-image" />
-                <p>No Event's to show yet! add new event here...</p>
-                <button class="btn btn-primary" (click)="addNewEvent()">Add New Event</button>
+                }
+                @empty(){
+                <div class="no-content">
+                    <img src="assets /no-events.png" alt="No Events" class="no-content-image" />
+                    <p>No Event's to show yet! add new event here...</p>
+                    <button class="btn btn-primary" (click)="addNewEvent()">Add New Event</button>
+                </div>
+                }
+                } @else {
+                <div class="list-container">
+                    <div class="list-header">
+                        <div class="list-header-cell header-image"></div>
+                        <div class="list-header-cell header-name">Event Name</div>
+                        <div class="list-header-cell header-date">Date</div>
+                        <div class="list-header-cell header-type">Event Type</div>
+                        <div class="list-header-cell header-actions"></div>
+                    </div>
+                    @for(event of events; track event.id) {
+                    <div class="list-row">
+                        <div class="list-cell cell-image">
+                            <img [src]="event.image" alt="{{ event.name }}" class="event-thumbnail" />
+                        </div>
+                        <div class="list-cell cell-name">{{ event.name }}</div>
+                        <div class="list-cell cell-date">{{ event.date | date: 'longDate' }}</div>
+                        <div class="list-cell cell-type">{{ event.category }}</div>
+                        <div class="list-cell cell-actions">
+                            <button class="action-btn-list delete-btn" (click)="deleteEvent(event)"
+                                title="Delete">🗑️</button>
+                            <button class="action-btn-list edit-btn" (click)="editEvent(event)" title="Edit">✎</button>
+                        </div>
+                    </div>
+                    }
+                    @empty(){
+                    <div class="no-content">
+                        <img src="assets /no-events.png" alt="No Events" class="no-content-image" />
+                        <p>No Event's to show yet! add new event here...</p>
+                        <button class="btn btn-primary" (click)="addNewEvent()">Add New Event</button>
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+            @if(updateNewEvent) {
+            <div class="model-overlay">
+                <app-event-update (cancelEventUpdate)="recieveCancelEvent()"></app-event-update>
             </div>
             }
-        </div>
-        @if(updateNewEvent) {
-        <div class="model-overlay">
-            <app-event-update (cancelEventUpdate)="recieveCancelEvent()"></app-event-update>
-        </div>
-        }
+        </section>
     </div>
 
 </div>

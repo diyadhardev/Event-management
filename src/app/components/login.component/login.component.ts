@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,34 +8,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
-  showPassword = false;
-
+  loginForm!: FormsModule;
   ngOnInit(): void {
-    this.initialiseLoginForm();
+    this.initializeForm();
   }
 
-  initialiseLoginForm() {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.email, Validators.required]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      rememberMe: new FormControl(false),
-    });
+  initializeForm() {
+
   }
 
-  togglePasswordVisibility(): void {
-    this.showPassword = !this.showPassword;
-  }
-
-  onLogin(): void {
-    if (this.loginForm.valid) {
-      const { email, password, rememberMe } = this.loginForm.value;
-      console.log('Login attempt:', {
-        email,
-        rememberMe,
-      });
-      // TODO: Add authentication service call here
-      // this.authService.login(email, password, rememberMe).subscribe(...);
-    }
-  }
 }

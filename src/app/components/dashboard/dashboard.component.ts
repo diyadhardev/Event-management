@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Event, EventsData } from '../../utils/models/events';
+import { Event, EventsData, EventsViewTypes } from '../../utils/models/events';
 
 @Component({
   selector: 'app-dashboard.component',
@@ -7,12 +7,22 @@ import { Event, EventsData } from '../../utils/models/events';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   searchTerm: string = ''
-  events: Event[] = [];
+  events: Event[] = EventsData;
+  eventsViewType = EventsViewTypes.CARD_VIEW;
   updateNewEvent: boolean = false;
-  ngOnInit(): void {
 
+  get EventsViewTypes() {
+    return EventsViewTypes;
+  }
+
+  get otherViewType() {
+    return this.eventsViewType === EventsViewTypes.CARD_VIEW ? EventsViewTypes.LIST_VIEW : EventsViewTypes.CARD_VIEW;
+  }
+
+  toggleView() {
+    this.eventsViewType = this.eventsViewType === EventsViewTypes.CARD_VIEW ? EventsViewTypes.LIST_VIEW : EventsViewTypes.CARD_VIEW;
   }
   recieveCancelEvent() {
     this.updateNewEvent = false;
