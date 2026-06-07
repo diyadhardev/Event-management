@@ -1,0 +1,147 @@
+.event-form-container{
+    background-color: white;
+    border-radius: 12px;
+    padding: 10px 10px;
+}
+.form-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.label-form{
+    text-align: center;
+}
+
+.cancel-icon{
+    border: 1px solid var(--color-neutral-gray);
+    border-radius: 8px;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#img{
+    display: none;
+}
+
+.img-container{
+        width: 100%;
+    border: 1px dashed var(--color-neutral-gray);
+    text-align: center;
+    border-radius: 10px;
+    height: 200px;
+flex-direction: column;
+justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+
+.image-preview{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(308px, 405px, 500px);
+}
+
+#image-icon{
+    color: var(--color-neutral-light-gray);
+}
+
+.preview-img{
+    width: 100%;
+}
+
+.preview-img-label{
+    position: absolute;
+    z-index: 111;
+    padding: 12px 7px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--color-neutral-gray);
+    background-color: var(--color-neutral-white);
+}
+
+.img-label{
+    width: 100%;
+    font-size: 20px;
+    color: var(--color-neutral-gray);
+    padding: 0px 40px;
+}
+
+/* form css */
+
+.event-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.eve-details{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-label{
+    color: var(--color-neutral-gray);
+}
+
+.input-field{
+    padding: 5px 10px;
+    border-radius: 7px;
+    border: 1px solid var(--color-neutral-gray);
+    height: 37px;
+}
+
+.input-field:focus{
+    border: none;
+}
+
+.select{
+    color: var(--color-neutral-gray);
+    padding: 0px 5px;
+}
+
+.option{
+    color: var(--color-neutral-gray);
+}
+
+.eve-btn{
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.btn{
+    width: 100%;
+    padding: 10px 6px;
+    border-radius: 9px;
+    border: none;
+    cursor: pointer;
+}   
+
+.form-footer{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.details-container{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-cancel{
+    background-color: var(--color-neutral-light-gray);
+}
+
+.btn-save{
+background: linear-gradient(
+151deg, var(--color-primary) -6px, var(--color-primary-light) 97px);
+}

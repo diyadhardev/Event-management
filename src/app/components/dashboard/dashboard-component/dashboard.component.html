@@ -1,0 +1,78 @@
+<div class="dashboard-container">
+    <div class="header-section">
+        <div class="logo-container">
+            <img src="../../../../assets/images/dashboard-logo.svg" alt="" id="logo">
+        </div>
+        <div class="header-actions"> 
+            <div class="search-container" [class.expanded]="isSearchExpanded">
+               <button class="search-icon-cont" id="btn-search" (click)="onToggleSearch()"> <img src="../../../../assets/icons/Search.svg" alt="" id="search-icon"></button>
+                <input type="text" id="search-text" [class.search-input-exp]="isSearchExpanded" placeholder="Search here..." (blur)="onSearchBlur()" (input)="onSearchInput($event)">
+            </div>
+            <div class="profile-container">
+                <img src="../../../../assets/icons/User.svg" alt="" id="profile-icon">
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="content-header">
+            <div class="content-left-section">
+                <div id="event-title">Events</div>
+                <p class="event-subtext">View and manage every events of the future. </p>
+            </div>
+          @if (events.length>0) {
+              <div class="content-right-section">
+                <div class="filter-container">
+                    <img src="../../../../assets/images/filter.svg" alt="" id="filter-icon">
+                    <button type="button" id="filter-btn">Filter</button>
+                </div>
+                <div class="view-type-container">
+                    <img src="../../../../assets/images/view.svg" alt="" id="view-icon">
+                    <button type="button" id="view-btn" >{{viewType}}</button>
+                </div>
+                <button type="button" id="add-event-btn" (click)="addNewEvent()"><span class="plus-icon">+</span>Add New Event</button>
+            </div>
+          }
+        </div>
+        <div class="content-body">
+           @if (isSearching && filteredEvents.length === 0) {
+            <!-- Search with no results — show illustration only -->
+            <div class="search-no-results">
+                <img src="../../../../assets/images/search-no-results.svg" alt="No results found" class="search-no-results-img">
+                <div class="search-no-results-title">No events found !</div>
+                <p class="search-no-results-text">try searching with different word.</p>
+            </div>
+           } @else if (events.length===0) {
+            <div class="empty-events-state">
+                <img src="../../../../assets/images/empty-events.svg" alt="" id="empty-event-icon">
+                <div class="empty-events-title">No Events to show yet ! add new <br>event here...</div>
+                <button type="button" id="add-event"(click)="addNewEvent()"><span class="plus-icon">+</span>Add New Event</button>
+            </div>
+           } @else if(viewType===EventsViewType.CARD) {
+            <app-event-card></app-event-card>
+           }
+           @else {
+            <app-event-list></app-event-list>
+           }    
+            
+        </div>
+
+        @if(isUpdateEvent){
+            <div class="event-update"><app-event-update (cancel)="onEventUpdateCancel()" ></app-event-update></div>
+        }
+
+        @if(isDeleteEvent){
+            <div class="event-overlay">
+                <app-event-delete 
+                    [eventData]="deleteEventData" 
+                    (deleteConfirmed)="onDeleteConfirmed($event)" 
+                    (deleteCancelled)="onDeleteCancelled()">
+                </app-event-delete>
+            </div>
+        }
+
+    </div>
+            <!-- <div class="event-update"><app-event-update [eventData]="eventData"></app-event-update></div> -->
+
+
+</div>

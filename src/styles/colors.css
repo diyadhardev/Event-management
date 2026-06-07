@@ -8,9 +8,9 @@
 
 :root {
     /* Primary Colors */
-    --color-primary: #ff7a45;
-    --color-primary-light: #ff8a50;
-    --color-primary-lighter: #ff9960;
+    --color-primary: #FD5900;
+    --color-primary-light: #FFB48C;
+    --color-primary-lighter: #FFF1EA;
 
     /* Secondary Colors */
     --color-secondary: #1a1a1a;
@@ -19,8 +19,8 @@
 
     /* Neutral Colors */
     --color-neutral-white: #ffffff;
-    --color-neutral-light-gray: #fafafa;
-    --color-neutral-gray: #e8e8e8;
+    --color-neutral-light-gray: #EAEAEA;
+    --color-neutral-gray: #06060680;
     --color-neutral-dark-gray: #d0d0d0;
     --color-neutral-border: #bdbdbd;
     --color-neutral-text: #1a1a1a;

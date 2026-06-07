@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AppTitleService } from '../../services/title.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,10 @@ export class LoginComponent implements OnInit {
   showPassword = false;
 
   ngOnInit(): void {
-    this.initialiseLoginForm();
-  }
+    this.initialiseLoginForm();this.appTitle.set('Login');
+  }// login.component.ts
+constructor(private appTitle: AppTitleService) {}
+
 
   initialiseLoginForm() {
     this.loginForm = new FormGroup({

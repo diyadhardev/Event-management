@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EventUpdateComponent } from './event-update.component/event-update.component';
-import { DashboardComponent } from './dashboard.component';
+import { EventUpdateComponent } from './event-update/event-update.component';
+import { DashboardComponent } from './dashboard-component/dashboard.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: DashboardComponent
-    }
+  {
+    path: '',
+    component: DashboardComponent,
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}
