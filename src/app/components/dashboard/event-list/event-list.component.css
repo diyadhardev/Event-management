@@ -1,0 +1,172 @@
+/* Main container with border */
+.main-container {
+    border-radius: 8px;
+    padding: 10px;
+    background-color: var(--color-neutral-white);
+}
+
+/* Table header styling */
+.table-header {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 1fr 80px;
+    gap: 15px;
+    align-items: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid var(--color-neutral-gray);
+    margin-bottom: 10px;
+}
+
+.events-header {
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+/* Event list item styling */
+.eve-list {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 1fr 80px;
+    gap: 15px;
+    align-items: center;
+    padding: 0px 10px;
+    border-bottom: 1px solid #e8e8e8;
+    background-color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+.eve-list:hover {
+    background-color: #f5f5f5;
+}
+
+/* Image container */
+.img-container {
+    width: 80px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 10px;
+}
+
+#eve-name {
+    text-align: left;
+    padding: 0px 10px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* Event details */
+.eve-name {
+    font-weight: 500;
+    font-size: 18px;
+    overflow: hidden;
+    text-align: left;
+    padding: 0px 10px;
+    white-space: nowrap;
+}
+
+.eve-date {
+    color: #757575;
+    font-size: 14px;
+}
+
+.eve-type {
+    color: #757575;
+    font-size: 14px;
+}
+
+/* Action buttons styling */
+.action-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.edit-btn,
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #757575;
+    transition: all 0.2s ease;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btn:hover {
+    transform: scale(1.15);
+}
+
+.delete-btn:hover {
+    transform: scale(1.15);
+}
+
+/* Pagination styling */
+.pagination-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 24px;
+}
+
+.page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.page-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    font-family: inherit;
+
+    &:hover:not(:disabled):not(.active) {
+        border: 2px solid var(--color-primary);
+    }
+
+    &.active {
+        background: #f05a28;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    &.nav-btn {
+        color: #444;
+        font-weight: 500;
+    }
+}
+
+.page-ellipsis {
+    padding: 0 4px;
+    color: #888;
+}
+
+@media screen and (max-width=500px) {
+    * {
+        font-size: 1rem;
+    }
+
+}

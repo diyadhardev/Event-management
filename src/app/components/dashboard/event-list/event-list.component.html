@@ -1,1 +1,47 @@
-<p>event-list.component works!</p>
+<div class="main-container">
+    <div class="table-header">
+        <div class="events-header"></div>
+        <div id="eve-name" class="events-header">Event Name</div>
+        <div id="eve-date" class="events-header">Event Date</div>
+        <div id="eve-type" class="events-header">Event Type</div>
+        <div class="events-header"></div>
+    </div>
+
+    <div class="eve-list" *ngFor="let event of pagedEvents">
+        <div class="img-container"><img [src]="event.image" alt=""></div>
+        <div class="eve-name">{{event.name}}</div>
+        <div class="eve-date">{{event.date}}</div>
+        <div class="eve-type">{{event.category}}</div>
+        <div class="action-btns">
+            <button class="edit-btn" (click)="editEvent(event)">
+                <img src="../../../../assets/icons/Edit.svg" alt="">
+            </button>
+            <button class="delete-btn" (click)="deleteEvent(event)">
+                <img src="../../../../assets/icons/Trash-2.svg" alt="">
+            </button>
+        </div>
+    </div>
+    @if (totalPages > 1) {
+    <div class="pagination-wrapper">
+        <button class="page-btn nav-btn" (click)="prevPage()" [disabled]="currentPage === 1">
+            ← Previous
+        </button>
+
+        <div class="page-numbers">
+            @for (page of pageNumbers; track $index) {
+            @if (page === '...') {
+            <span class="page-ellipsis">...</span>
+            } @else {
+            <button class="page-btn" [class.active]="page === currentPage" (click)="goToPage(page)">
+                {{ page }}
+            </button>
+            }
+            }
+        </div>
+
+        <button class="page-btn nav-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+            Next →
+        </button>
+    </div>
+    }
+</div>

@@ -1,0 +1,136 @@
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
+}
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-neutral-white);
+    border-radius: 12px;
+    padding: 12px;
+    gap: 5px;
+}
+
+.header-info-btns {
+    display: flex;
+    gap: 12px;
+}
+
+.display-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.events-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 7em;
+}
+
+.event-name {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+#date {
+    color: var(--color-neutral-gray);
+}
+
+#category {
+    border-radius: 4px;
+    padding: 3px 12px;
+    font-size: 12px;
+    color: var(--color-primary);
+    background-color: var(--color-primary-lighter);
+}
+
+.btn-container {
+    display: flex;
+}
+
+.btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s ease;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    transform: scale(1.15)
+}
+
+.icon {
+    font-size: 20px;
+    color: var(--color-neutral-light-gray);
+}
+
+
+.events-subdetails {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+}
+
+/* Pagination Styles */
+.pagination-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fdf0ec;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 24px;
+}
+
+.page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.page-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--color-neutral-gray);
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    font-family: inherit;
+
+    &:hover:not(:disabled):not(.active) {
+        border: 2px solid var(--color-primary);
+    }
+
+    &.active {
+        background: #f05a28;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    &.nav-btn {
+        color: var(--color-neutral-lighter-gray);
+        border: 2px solid var(--color-neutral-light-gray);
+        font-weight: 500;
+    }
+}
+
+.page-ellipsis {
+    padding: 0 4px;
+    color: #888;
+}

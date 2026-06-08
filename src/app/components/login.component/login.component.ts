@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { AppTitleService } from '../../services/title.service';
 
 @Component({
@@ -10,35 +10,29 @@ import { AppTitleService } from '../../services/title.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  showPassword = false;
+  showPassword: boolean = false;
+
+  constructor(private titleService: AppTitleService) { }
 
   ngOnInit(): void {
-    this.initialiseLoginForm();this.appTitle.set('Login');
-  }// login.component.ts
-constructor(private appTitle: AppTitleService) {}
-
-
-  initialiseLoginForm() {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.email, Validators.required]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      rememberMe: new FormControl(false),
-    });
+    this.titleService.set('Login')
+    this.initializeForm();
   }
 
-  togglePasswordVisibility(): void {
+  initializeForm() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required]),
+      rememberMe: new FormControl('')
+    })
+  }
+
+  togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
 
-  onLogin(): void {
-    if (this.loginForm.valid) {
-      const { email, password, rememberMe } = this.loginForm.value;
-      console.log('Login attempt:', {
-        email,
-        rememberMe,
-      });
-      // TODO: Add authentication service call here
-      // this.authService.login(email, password, rememberMe).subscribe(...);
-    }
+  onSubmit() {
+
   }
+
 }

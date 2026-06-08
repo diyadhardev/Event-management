@@ -3,14 +3,28 @@
         <div class="logo-container">
             <img src="../../../../assets/images/dashboard-logo.svg" alt="" id="logo">
         </div>
-        <div class="header-actions"> 
+        <div class="header-actions">
             <div class="search-container" [class.expanded]="isSearchExpanded">
-               <button class="search-icon-cont" id="btn-search" (click)="onToggleSearch()"> <img src="../../../../assets/icons/Search.svg" alt="" id="search-icon"></button>
-                <input type="text" id="search-text" [class.search-input-exp]="isSearchExpanded" placeholder="Search here..." (blur)="onSearchBlur()" (input)="onSearchInput($event)">
+                <button class="search-icon-cont" id="btn-search" (click)="onToggleSearch()"> <img
+                        src="../../../../assets/icons/Search.svg" alt="" id="search-icon"></button>
+                <input type="text" id="search-text" [class.search-input-exp]="isSearchExpanded"
+                    placeholder="Search here..." (blur)="onSearchBlur()" (input)="onSearchInput($event)">
             </div>
-            <div class="profile-container">
+            <button class="profile-container" (click)="profileClickedEvent()">
                 <img src="../../../../assets/icons/User.svg" alt="" id="profile-icon">
+            </button>
+            @if(profileClicked){
+            <div class="profile-details">
+                <div class="profile-container"><img src="../../../../assets/icons/User.svg" alt="" id="profile-icon">
+                </div>
+                <div class="user-name">Jhon doe</div>
+                <div class="user-email">jhondoe@mailsample.com</div>
+                <div class="logout-container">
+                    <div class="logout-logo"><img src="../../../../assets/icons/Log out.svg" alt=""></div>
+                    <div class="logout-label">Log Out</div>
+                </div>
             </div>
+            }
         </div>
     </div>
 
@@ -20,59 +34,63 @@
                 <div id="event-title">Events</div>
                 <p class="event-subtext">View and manage every events of the future. </p>
             </div>
-          @if (events.length>0) {
-              <div class="content-right-section">
-                <div class="filter-container">
-                    <img src="../../../../assets/images/filter.svg" alt="" id="filter-icon">
-                    <button type="button" id="filter-btn">Filter</button>
+            @if(events.length > 0) {
+            <div class="header-actions">
+                <div class="header-info-btns">
+                    <button class="header-btn">
+                        <img src="../../../../assets/icons/Sort.svg" alt="">
+                        <span class="action-text">Filter</span></button>
+                    <button class="header-btn" (click)="changeViewType()"><img
+                            src="../../../../assets/icons/List view.svg" alt="">
+                        <span class="action-text">{{otherView}} View</span></button>
                 </div>
-                <div class="view-type-container">
-                    <img src="../../../../assets/images/view.svg" alt="" id="view-icon">
-                    <button type="button" id="view-btn" >{{viewType}}</button>
-                </div>
-                <button type="button" id="add-event-btn" (click)="addNewEvent()"><span class="plus-icon">+</span>Add New Event</button>
-            </div>
-          }
+                <button class="header-btn add-new-btn" (click)="addNewEvent()">+ Add New Event</button>
+            </div> }
         </div>
         <div class="content-body">
-           @if (isSearching && filteredEvents.length === 0) {
+            @if (isSearching && filteredEvents.length === 0) {
             <!-- Search with no results — show illustration only -->
             <div class="search-no-results">
-                <img src="../../../../assets/images/search-no-results.svg" alt="No results found" class="search-no-results-img">
+                <img src="../../../../assets/images/search-no-results.svg" alt="No results found"
+                    class="search-no-results-img">
                 <div class="search-no-results-title">No events found !</div>
                 <p class="search-no-results-text">try searching with different word.</p>
             </div>
-           } @else if (events.length===0) {
+            } @else if (events.length===0) {
             <div class="empty-events-state">
                 <img src="../../../../assets/images/empty-events.svg" alt="" id="empty-event-icon">
                 <div class="empty-events-title">No Events to show yet ! add new <br>event here...</div>
-                <button type="button" id="add-event"(click)="addNewEvent()"><span class="plus-icon">+</span>Add New Event</button>
+                <button type="button" id="add-event" (click)="addNewEvent()"><span class="plus-icon">+</span>Add New
+                    Event</button>
             </div>
-           } @else if(viewType===EventsViewType.CARD) {
-            <app-event-card></app-event-card>
-           }
-           @else {
-            <app-event-list></app-event-list>
-           }    
-            
+            } @else if(viewType===EventsViewType.CARD) {
+            <div class="card-container">
+                <app-event-card [events]="events" (eventEdit)="recieveEditEvent($event)"
+                    (eventDelete)="openDeleteModal($event)"></app-event-card>
+            </div>
+            }
+            @else {
+            <div class="list-container">
+                <app-event-list [events]="events" (eventEdit)="recieveEditEvent($event)"
+                    (eventDelete)="openDeleteModal($event)"></app-event-list>
+            </div>
+            }
+
         </div>
 
         @if(isUpdateEvent){
-            <div class="event-update"><app-event-update (cancel)="onEventUpdateCancel()" ></app-event-update></div>
+        <div class="event-update"><app-event-update (cancel)="onEventUpdateCancel()"
+                [eventData]="editEventData"></app-event-update></div>
         }
 
         @if(isDeleteEvent){
-            <div class="event-overlay">
-                <app-event-delete 
-                    [eventData]="deleteEventData" 
-                    (deleteConfirmed)="onDeleteConfirmed($event)" 
-                    (deleteCancelled)="onDeleteCancelled()">
-                </app-event-delete>
-            </div>
+        <div class="event-overlay">
+            <app-event-delete [eventData]="deleteEventData" (deleteConfirmed)="onDeleteConfirmed($event)"
+                (deleteCancelled)="onDeleteCancelled()">
+            </app-event-delete>
+        </div>
         }
 
     </div>
-            <!-- <div class="event-update"><app-event-update [eventData]="eventData"></app-event-update></div> -->
-
 
 </div>

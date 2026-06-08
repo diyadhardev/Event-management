@@ -1,55 +1,55 @@
-<div class="login-container">
-    <div class="login-card">
-        <!-- Header -->
-        <div class="login-header">
-            <h1>Sign in to <span class="brand-name">Evo<span class="brand-event">Event</span></span></h1>
-            <p class="welcome-text">Welcome to evento please enter your login details below</p>
+<div class="main-login-page">
+    <div class="login-form">
+        <div class="header">
+            <div class="login-header">Sign in to <span id="eve">Evo</span><span id="event">Event</span></div>
+            <p class="login-subheader">Welcome to evento please enter your <br>login details
+                below </p>
         </div>
-
-        <!-- Login Form -->
-        <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()">
-            <!-- Email Field -->
-            <div class="form-group">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" id="email" class="form-input" formControlName="email"
-                    placeholder="Ex. jhondoe@mailsample.com" required>
-                @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
-                <div class="error-message">Please enter a valid email address.</div>
-                }
-            </div>
-
-            <!-- Password Field -->
-            <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <div class="password-input-wrapper">
-                    <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-input password-input"
-                        formControlName="password" placeholder="••••••••" required>
-                    <button type="button" class="toggle-password-btn" (click)="togglePasswordVisibility()"
-                        aria-label="Toggle password visibility">
-                        <span *ngIf="!showPassword" class="eye-icon">👁️ </span>
-                        <span *ngIf="showPassword" class="eye-icon-closed">👁️‍🗨️</span>
-                    </button>
+        <div class="main-form-section">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+                <div class="email-field" class="fields"> <label for="email">Email address</label>
+                    <input type="email" name="email" id="email" formControlName="email"
+                        placeholder="Ex. jhondoe@mailsample.com" class="form-inputs
+                ">
                 </div>
-                @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
-                <div class="error-message">Please enter a valid password.</div>
+                @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+                <div id="email-errors" class="errors">
+                    <p>Email is required</p>
+                </div>
                 }
-            </div>
+                <div class="password-field" class="fields"><label for="password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input [type]="showPassword ? 'text' : 'password'" name="password" id="password"
+                            formControlName="password" class="form-inputs">
+                        <svg class="eye-toggle-icon" (click)="togglePasswordVisibility()" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path *ngIf="!showPassword"
+                                d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z">
+                            </path>
+                            <path *ngIf="!showPassword"
+                                d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z">
+                            </path>
+                            <path *ngIf="showPassword"
+                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                            </path>
+                            <line *ngIf="showPassword" x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </div>
+                    @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+                    <div id="password-errors" class="errors">
+                        <p>Password is required</p>
+                    </div>
+                    }
+                </div>
 
-            <!-- Remember Me Checkbox -->
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="rememberMe" class="form-checkbox" formControlName="rememberMe">
-                <label for="rememberMe" class="checkbox-label">Remember me</label>
-            </div>
-
-            <!-- Login Button -->
-            <button type="submit" class="login-button" [disabled]="loginForm.invalid">
-                Log in
-            </button>
-        </form>
-
-        <!-- Forgot Password Link -->
-        <div class="forgot-password">
-            <a href="#" class="forgot-password-link">Forgot the password?</a>
+                <div class="remember-me">
+                    <input type="checkbox" value="" formControlName="rememberMe" id="rememberMe">
+                    <label for="rememberMe">Remember me</label>
+                </div>
+            </form>
+            <button type="submit" [disabled]=!loginForm.valid class="submit-btn">Log in</button>
+            <a routerLink="" class="link">Forget the password ?</a>
         </div>
     </div>
 </div>

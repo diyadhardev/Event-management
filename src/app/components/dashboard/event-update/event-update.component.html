@@ -1,3 +1,4 @@
+<div class="modal-overlay" (click)="onCancel()">
 <div class="event-form-container">
     <div class="form-header">
         <div class="label-form">{{eventData?'Edit Event':'New Event'}}</div>
@@ -8,43 +9,47 @@
             <input type="file" name="img" src="" id="img" formControlName="image">
 
             @if(eventData){
-                <div class="image-preview">
-                    <img [src]="eventData.image" alt="" class="preview-img">
-                    <label for="img" class="preview-img-label">Change image</label>
-                </div>
+            <div class="image-preview">
+                <img [src]="eventData.image" alt="" class="preview-img">
+                <label for="img" class="preview-img-label">Change image</label>
+            </div>
             }
             @else {
-                <img src="../../../../assets/icons/Image.svg" alt="" id="image-icon">
-                <label for="img" class="img-label">Drop an image here or click to upload !</label>
+            <img src="../../../../assets/icons/Image.svg" alt="" id="image-icon">
+            <label for="img" class="img-label">Drop an image here or click to upload !</label>
             }
         </div>
-      <div class="form-footer">
-        <div class="details-container"> 
-         <div class="eve-name eve-details">
-            <label for="name" class="form-label">Event Name</label>
-            <input type="text" name="name" id="name" formControlName="name" class="input-field" placeholder="Ex. Jhon's birthday">
-        </div>
-        <div class="eve-date eve-details">
-            <label for="date" class="form-label">Event Date</label>
-            <input type="date" name="date" id="date" formControlName="date" class="input-field" placeholder="Select a date...">
-        </div>
-        <div class="eve-cat eve-details">
-            <label for="category" class="form-label">Event Category</label>
-            <select name="category" id="category" formControlName="category" class="input-field select">
-                <option value="" class="option">Select a option..</option>
-                <option value="Concerts"  class="option">Concerts</option>
-                <option value="Conferences" class="option">Conferences</option>
-                <option value="Festivals" class="option">Festivals</option>
-                <option value="Workshops" class="option">Workshops</option>
-            </select>
-        </div>
-        </div>
+        <div class="form-footer">
+            <div class="details-container">
+                <div class="eve-name eve-details">
+                    <label for="name" class="form-label">Event Name</label>
+                    <input type="text" name="name" id="name" formControlName="name" class="input-field"
+                        placeholder="Ex. Jhon's birthday">
+                </div>
+                <div class="eve-date eve-details">
+                    <label for="date" class="form-label">Event Date</label>
+                    <input type="date" name="date" id="date" formControlName="date" class="input-field"
+                        [placeholder]="eventData?.date?eventData?.date:'Select a date...'">
+                </div>
+                <div class="eve-cat eve-details">
+                    <label for="category" class="form-label">Event Category</label>
+                    <select name="category" id="category" formControlName="category" class="input-field select">
+                        <option value="" class="option">Select a option..</option>
+                        <option value="concerts" class="option">Concerts</option>
+                        <option value="conferences" class="option">Conferences</option>
+                        <option value="festival" class="option">Festivals</option>
+                        <option value="workshops" class="option">Workshops</option>
+                    </select>
+                </div>
+            </div>
 
-        <div class="eve-btn">
-            <button type="button" class="btn-cancel btn" (click)="onCancel()"> Cancel </button>
-            <button type="submit" [disabled]="eventForm.invalid" class="btn-save btn">{{eventData?'Save Changes':'Save'}}</button>
+            <div class="eve-btn">
+                <button type="button" class="btn-cancel btn" (click)="onCancel()"> Cancel </button>
+                <button type="submit" [disabled]="eventForm.invalid" class="btn-save btn">{{eventData?'Save
+                    Changes':'Save'}}</button>
+            </div>
+
         </div>
-    
-      </div>
     </form>
+</div>
 </div>

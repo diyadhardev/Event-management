@@ -1,1 +1,41 @@
-<p>event-card.component works!</p>
+<div class="events-container">
+    <div class="event-card" *ngFor="let event of pagedEvents">
+        <div class="img-container"><img [src]="event.image" class="display-img" alt="" srcset=""></div>
+        <div class="events-info">
+            <div class="event-name">{{ event.name }}</div>
+            <div class="btn-container"> <button class="btn" (click)="deleteEvent(event)">
+                    <img class="icons" src="../../../../assets/icons/Trash-2.svg"> </button>
+
+                <button class="btn" (click)="editEvent(event)"><img class="icons"
+                        src="../../../../assets/icons/Edit.svg" alt=""></button>
+            </div>
+        </div>
+        <div class="events-subdetails">
+            <div id="category" class="event-data">{{ event.category }}</div>
+            <div id="date" class="event-data">{{ event.date }}</div>
+        </div>
+    </div>
+</div>
+@if (totalPages > 1) {
+<div class="pagination-wrapper">
+    <button class="page-btn nav-btn" (click)="prevPage()" [disabled]="currentPage === 1">
+        ← Previous
+    </button>
+
+    <div class="page-numbers">
+        @for (page of pageNumbers; track $index) {
+        @if (page === '...') {
+        <span class="page-ellipsis">...</span>
+        } @else {
+        <button class="page-btn" [class.active]="page === currentPage" (click)="goToPage(page)">
+            {{ page }}
+        </button>
+        }
+        }
+    </div>
+
+    <button class="page-btn nav-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Next →
+    </button>
+</div>
+}

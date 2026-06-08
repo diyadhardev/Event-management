@@ -8,48 +8,50 @@ import { Event } from '../../../utils/models/events';
   templateUrl: './event-update.component.html',
   styleUrl: './event-update.component.css',
 })
-export class EventUpdateComponent implements OnInit,OnChanges {
+export class EventUpdateComponent implements OnInit, OnChanges {
 
-  eventForm!:FormGroup;
-  @Output() cancel=new EventEmitter<void>();
-  @Input() eventData?:Event;
+  eventForm!: FormGroup;
+  @Output() cancel = new EventEmitter<void>();
+  @Input() eventData?: Event;
 
   ngOnInit(): void {
-   if(!this.eventForm){
-     this.initializeForm()
-   }
+    if (!this.eventForm) {
+      this.initializeForm()
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-      if( changes['eventData'] && changes['eventData'].currentValue){
-        this.eventData=changes['eventData'].currentValue;
-        if(!this.eventForm){
-          console.log("Enter")
-      this.initializeForm();
-    }
-          this.patchForm();
+    console.log("EventData....")
+    console.log(changes['eventData'].currentValue)
+    if (changes['eventData'] && changes['eventData'].currentValue) {
+      this.eventData = changes['eventData'].currentValue;
+      if (!this.eventForm) {
+        console.log("Enter")
+        this.initializeForm();
       }
+      this.patchForm();
+    }
   }
- 
-  patchForm(){
+
+  patchForm() {
     this.eventForm.patchValue({
-      name:this.eventData?.name,  
-      date:this.eventData?.date,
-      category:this.eventData?.category     
+      name: this.eventData?.name,
+      date: this.eventData?.date,
+      category: this.eventData?.category
     })
   }
 
-  initializeForm(){
-    this.eventForm=new FormGroup({
-      image:new FormControl('',[Validators.required]),
-      name:new FormControl('',[Validators.required]),
-      date:new FormControl('',[Validators.required]),
-      category:new FormControl('',[Validators.required])
+  initializeForm() {
+    this.eventForm = new FormGroup({
+      image: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      date: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required])
     })
   }
 
-  onSubmit(){}
-  onCancel(){
+  onSubmit() { }
+  onCancel() {
     this.cancel.emit();
   }
 }
