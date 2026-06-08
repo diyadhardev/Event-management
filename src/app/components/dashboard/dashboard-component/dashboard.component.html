@@ -47,6 +47,10 @@
                 <button class="header-btn add-new-btn" (click)="addNewEvent()">+ Add New Event</button>
             </div> }
         </div>
+        @if(isFilterExpanded){
+        <ng-select [items]="categories" [(ngModel)]="selectedFilter" bindLabel="label" bindValue="value"
+            placeholder="Select a city" (ngModelChange)="onFilterSelect($event)"></ng-select>
+        }
         <div class="content-body">
             @if (isSearching && filteredEvents.length === 0) {
             <!-- Search with no results — show illustration only -->

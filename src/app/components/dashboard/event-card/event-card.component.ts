@@ -12,7 +12,7 @@ export class EventCardComponent implements OnInit {
   @Output() eventEdit = new EventEmitter<any>()
   @Output() eventDelete = new EventEmitter<any>()
   currentPage = 1;
-  readonly limit = 6;
+  readonly limit = 1;
   startEventId: number = this.events?.[0].id;
   lastEventId = 6;
   paginatedEvents!: Event[];

@@ -18,7 +18,7 @@ export class EventListComponent {
   private _events: Event[] = [];
 
   currentPage = 1;
-  readonly limit = 6;
+  readonly limit = 1;
 
   get pagedEvents(): Event[] {
     const start = (this.currentPage - 1) * this.limit;

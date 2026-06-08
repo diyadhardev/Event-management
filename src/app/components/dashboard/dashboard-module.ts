@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard-component/dashboard.component';
 import { EventCardComponent } from './event-card/event-card.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventDeleteComponent } from './event-delete/event-delete';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,6 @@ import { EventDeleteComponent } from './event-delete/event-delete';
     EventListComponent,
     EventDeleteComponent,
   ],
-  imports: [CommonModule, DashboardRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, DashboardRoutingModule, NgSelectModule, FormsModule, ReactiveFormsModule],
 })
-export class DashboardModule {}
+export class DashboardModule { }

@@ -11,6 +11,22 @@ export enum EventsViewType {
     LIST = 'List'
 }
 
+export const categoryOptions = [
+    { label: 'Singing Concert', value: 'Singing Concert' },
+    { label: 'Meeting', value: 'Meeting' },
+    { label: 'Dance Performance', value: 'Dance Performance' },
+    { label: 'Standup Comedy', value: 'Standup Comedy' },
+    { label: 'Magic Show', value: 'Magic Show' },
+    { label: 'Festival', value: 'Festival' },
+    { label: 'Movie Show', value: 'Movie Show' }
+];
+
+
+export const dateFilters = [
+    'Within this month',
+    'Next 6 months'
+];
+
 export const EventsData: Event[] = [
     {
         id: 1,

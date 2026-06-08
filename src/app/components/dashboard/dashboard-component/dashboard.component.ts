@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Event, EventsData, EventsViewType } from '../../../utils/models/events';
+import { categoryOptions, Event, EventsData, EventsViewType } from '../../../utils/models/events';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { AppTitleService } from '../../../services/title.service';
 
@@ -21,7 +21,9 @@ export class DashboardComponent implements OnInit {
   isDeleteEvent = false;
   deleteEventData?: Event;
   isSearchExpanded = false;
-
+  categories = categoryOptions;
+  isFilterExpanded = false;
+  selectedFilter = ''
   isSearching = false;
   searchQuery = '';
   events: any[] = EventsData // your events array
@@ -61,6 +63,11 @@ export class DashboardComponent implements OnInit {
 
   profileClickedEvent() {
     this.profileClicked = !this.profileClicked
+  }
+
+  onFilterSelect(value: string) {
+    this.selectedFilter = value;
+    this.isFilterExpanded = false
   }
 
   onToggleSearch() {
@@ -127,7 +134,6 @@ export class DashboardComponent implements OnInit {
     this.isDeleteEvent = false;
     this.deleteEventData = undefined;
   }
-
 
   // add new event 
 
