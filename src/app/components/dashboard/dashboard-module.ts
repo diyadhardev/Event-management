@@ -4,9 +4,10 @@ import { EventUpdateComponent } from './event-update.component/event-update.comp
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard.component';
+import { Pagination } from './pagination/pagination';
 
 @NgModule({
-  declarations: [EventUpdateComponent, DashboardComponent],
+  declarations: [EventUpdateComponent, DashboardComponent, Pagination],
   imports: [CommonModule, DashboardRoutingModule, FormsModule, ReactiveFormsModule],
 })
-export class DashboardModule { }
+export class DashboardModule {}

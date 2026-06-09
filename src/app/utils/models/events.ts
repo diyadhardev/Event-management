@@ -1,5 +1,5 @@
 export interface Event {
-    id: string;
+    id: number;
     image: string;
     name: string;
     date: string;
@@ -8,72 +8,73 @@ export interface Event {
 
 export const EventsData: Event[] = [
     {
-        id: '1',
-        image: 'https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=',
+        id: 1,
+        image: '../../../assets/images/card-image.svg',
         name: 'Navaratri event',
-        date: '2023-10-15',
+        date: '15, October 2023',
         category: 'festival'
     },
     {
-        id: '2',
-        image: 'https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=',
+        id: 2,
+        image: '../../../assets/images/card-image2.svg',
         name: 'Diwali event',
-        date: '2023-10-16',
+        date: '16, October 2023',
         category: 'festival'
     },
     {
-        id: '3',
-        image: 'https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=',
+        id: 3,
+        image: '../../../assets/images/card-image3.svg',
         name: 'Holi event',
-        date: '2023-10-17',
+        date: '17, October 2023',
         category: 'festival'
-    }, {
-        id: '4',
-        image: 'https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=',
+    }, 
+    {
+        id: 4,
+        image: '../../../assets/images/card-image4.svg',
         name: 'Christmas event',
-        date: '2023-10-18',
+        date: '18, October 2023',
         category: 'festival'
     },
     {
-        id: '5',
-        image: 'https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=',
+        id: 5,
+        image: '../../../assets/images/card-image5.svg',
         name: 'New Year event',
-        date: '2023-10-19',
+        date: '19, October 2023',
         category: 'festival'
     },
     {
-        id: '6',
-        image: 'https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=',
+        id: 6,
+        image: '../../../assets/images/card-image6.svg',
         name: 'Easter event',
-        date: '2023-10-20',
+        date: '20, October 2023',
         category: 'festival'
     },
     {
-        id: '7',
-        image: 'https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=',
+        id: 7,
+        image: '../../../assets/images/card-image7.svg',
         name: 'Thanksgiving event',
-        date: '2023-10-21',
+        date: '21, October 2023',
         category: 'festival'
     },
     {
-        id: '8',
-        image: 'https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=',
+        id: 8,
+        image: '../../../assets/images/card-image8.svg',
         name: 'Valentine\'s Day event',
-        date: '2023-10-22',
+        date: '22, October 2023',
         category: 'festival'
     },
     {
-        id: '9',
-        image: 'https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=',
+        id: 9,
+        image: '../../../assets/images/card-image9.svg',
         name: 'Independence Day event',
-        date: '2023-10-23',
+        date: '23, October 2023',
         category: 'festival'
     },
     {
-        id: '10',
-        image: 'https://media.istockphoto.com/id/1317323736/photo/a-view-up-into-the-trees-direction-sky.jpg?s=612x612&w=0&k=20&c=i4HYO7xhao7CkGy7Zc_8XSNX_iqG0vAwNsrH1ERmw2Q=',
+        id: 10,
+        image: '../../../assets/images/card-image10.svg',
         name: 'Republic Day event',
-        date: '2023-10-24',
+        date: '24, October 2023',
         category: 'festival'
     }
 ];
