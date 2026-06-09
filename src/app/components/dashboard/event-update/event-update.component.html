@@ -5,19 +5,31 @@
             <button class="cancel-icon" (click)="onCancel()"><img src="../../../../assets/icons/x.svg" alt=""></button>
         </div>
         <form (ngSubmit)="onSubmit()" [formGroup]="eventForm" class="event-form">
-            <div [class.img-container]="!eventData">
-                <input type="file" name="img" src="" id="img" formControlName="image">
+            <div [class.img-container]="!eventData && !showCropper">
+                <input (change)="onFileSelected($event)" type="file" name="img" src="" id="img" formControlName="image">
 
-                @if(eventData){
-                <div class="image-preview">
-                    <img [src]="eventData.image" alt="" class="preview-img">
-                    <label for="img" class="preview-img-label">Change image</label>
+                @if(showCropper){
+                <div class="image-cropper-container">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                        [aspectRatio]="1/1" format="png" (imageCropped)="imageCropped($event)"></image-cropper>
+                    <div class="cropped-img-actions">
+                        <button class="btn-cancel btn" (click)="cancelCrop()">Cancel</button>
+                        <button class="btn-save btn" (click)="saveCrop()">Save</button>
+                    </div>
                 </div>
                 }
-                @else {
+
+                @if(!preview && !showCropper){
                 <img src="../../../../assets/icons/Image.svg" alt="" id="image-icon">
                 <label for="img" class="img-label">Drop an image here or click to upload !</label>
                 }
+                @else if(!showCropper){
+                <div class="image-preview">
+                    <img [src]="preview" alt="" class="preview-img">
+                    <label for="img" class="preview-img-label">Change image</label>
+                </div>
+                }
+
             </div>
             <div class="form-footer">
                 <div class="details-container">

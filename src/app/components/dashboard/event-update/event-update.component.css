@@ -205,6 +205,40 @@
     background: linear-gradient(151deg, var(--color-primary) -6px, var(--color-primary-light) 97px);
 }
 
+.image-cropper-container {
+    position: absolute;
+    background: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid gray;
+    border-radius: 12px;
+}
+
+::ng-deep image-cropper {
+    height: 70%;
+    overflow: auto;
+}
+
+.cropped-img-actions {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+    padding: 7px;
+    justify-content: center;
+}
+
+
+
+
+
 @media screen and (max-width: 500px) {
 
     /* Mobile: Modal covers entire viewport */

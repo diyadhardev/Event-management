@@ -8,7 +8,7 @@ import { EventCardComponent } from './event-card/event-card.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventDeleteComponent } from './event-delete/event-delete';
 import { NgSelectModule } from '@ng-select/ng-select';
-
+import { ImageCropperComponent } from 'ngx-image-cropper';
 @NgModule({
   declarations: [
     EventUpdateComponent,
@@ -17,6 +17,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     EventListComponent,
     EventDeleteComponent,
   ],
-  imports: [CommonModule, DashboardRoutingModule, NgSelectModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, ImageCropperComponent, DashboardRoutingModule, NgSelectModule, FormsModule, ReactiveFormsModule],
 })
 export class DashboardModule { }
