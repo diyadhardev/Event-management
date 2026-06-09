@@ -21,10 +21,9 @@ export const categoryOptions = [
     { label: 'Movie Show', value: 'Movie Show' }
 ];
 
-
 export const dateFilters = [
-    'Within this month',
-    'Next 6 months'
+    { label: 'Within this month', value: 'month' },
+    { label: 'Next 6 months', value: '6months' },
 ];
 
 export const EventsData: Event[] = [

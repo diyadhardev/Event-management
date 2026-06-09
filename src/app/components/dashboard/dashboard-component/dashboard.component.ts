@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { categoryOptions, Event, EventsData, EventsViewType } from '../../../utils/models/events';
+import { categoryOptions, dateFilters, Event, EventsData, EventsViewType } from '../../../utils/models/events';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { AppTitleService } from '../../../services/title.service';
 
@@ -23,6 +23,8 @@ export class DashboardComponent implements OnInit {
   isSearchExpanded = false;
   categories = categoryOptions;
   isFilterExpanded = false;
+  selectedDateFilter = ''
+  dateFilters = dateFilters;
   selectedFilter = ''
   isSearching = false;
   searchQuery = '';
@@ -67,6 +69,29 @@ export class DashboardComponent implements OnInit {
 
   onFilterSelect(value: string) {
     this.selectedFilter = value;
+  }
+
+  onDateFilterSelect(value: string) {
+    this.selectedDateFilter = value;
+  }
+
+  showFilterOptions() {
+    this.isFilterExpanded = !this.isFilterExpanded;
+  }
+
+  onReset() {
+    this.isFilterExpanded = false
+    this.selectedFilter = ''
+    this.selectedDateFilter = ''
+  }
+
+  onApply() {
+    if (this.selectedFilter) {
+      this.filteredEvents = this.events.filter(e => e.category.toLowerCase().includes(this.selectedFilter.toLowerCase()))
+    }
+    if (this.selectedDateFilter) {
+      this.filteredEvents = this.events.filter(e => e.date.toLowerCase().includes(this.selectedDateFilter.toLowerCase()))
+    }
     this.isFilterExpanded = false
   }
 

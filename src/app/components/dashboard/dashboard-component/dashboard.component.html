@@ -30,6 +30,7 @@
 
     <div class="main-content">
         <div class="content-header">
+
             <div class="content-left-section">
                 <div id="event-title">Events</div>
                 <p class="event-subtext">View and manage every events of the future. </p>
@@ -37,7 +38,7 @@
             @if(events.length > 0) {
             <div class="header-actions">
                 <div class="header-info-btns">
-                    <button class="header-btn">
+                    <button class="header-btn" (click)="showFilterOptions()">
                         <img src="../../../../assets/icons/Sort.svg" alt="">
                         <span class="action-text">Filter</span></button>
                     <button class="header-btn" (click)="changeViewType()"><img
@@ -45,12 +46,50 @@
                         <span class="action-text">{{otherView}} View</span></button>
                 </div>
                 <button class="header-btn add-new-btn" (click)="addNewEvent()">+ Add New Event</button>
-            </div> }
+            </div>
+            }
+            @if(isFilterExpanded) {
+            <div class="filter-container">
+                <div class="filter-panel">
+
+                    <p class="filter-label">By categories</p>
+                    <div class="option-list">
+                        @for(item of categories; track item.value) {
+                        <div class="option" [class.selected]="selectedFilter === item.value"
+                            (click)="selectedFilter = item.value">
+                            {{ item.label }}
+                            @if(selectedFilter === item.value) {
+                            <span class="check">✓</span>
+                            }
+                        </div>
+                        }
+                    </div>
+
+                    <p class="filter-label">By Date</p>
+                    <div class="option-list">
+                        @for(item of dateFilters; track item.value) {
+                        <div class="option" [class.selected]="selectedDateFilter === item.value"
+                            (click)="selectedDateFilter = item.value">
+                            {{ item.label }}
+                            @if(selectedDateFilter === item.value) {
+                            <span class="check">✓</span>
+                            }
+                        </div>
+                        }
+                    </div>
+
+                    <div class="filter-footer">
+                        <button class="btn-reset" (click)="onReset()">Reset</button>
+                        <button class="btn-apply" (click)="onApply()">Apply Filter</button>
+                    </div>
+
+                </div>
+            </div>
+            }
+
         </div>
-        @if(isFilterExpanded){
-        <ng-select [items]="categories" [(ngModel)]="selectedFilter" bindLabel="label" bindValue="value"
-            placeholder="Select a city" (ngModelChange)="onFilterSelect($event)"></ng-select>
-        }
+
+
         <div class="content-body">
             @if (isSearching && filteredEvents.length === 0) {
             <!-- Search with no results — show illustration only -->
@@ -94,6 +133,8 @@
             </app-event-delete>
         </div>
         }
+
+
 
     </div>
 
