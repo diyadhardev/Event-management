@@ -1,75 +1,148 @@
 <div class="modal-overlay">
-    <div class="event-form-container">
-        <div class="form-header">
-            <div class="label-form">{{eventData?'Edit Event':'New Event'}}</div>
-            <button class="cancel-icon" (click)="onCancel()"><img src="../../../../assets/icons/x.svg" alt=""></button>
-        </div>
-        <form (ngSubmit)="onSubmit()" [formGroup]="eventForm" class="event-form">
-            <div [class.img-container]="!eventData && !showCropper">
-                <input (change)="onFileSelected($event)" type="file" name="img" src="" id="img" formControlName="image">
-
-                @if(showCropper){
-                <div class="image-cropper-container">
-                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
-                        [aspectRatio]="1/1" format="png" (imageCropped)="imageCropped($event)"></image-cropper>
-                    <div class="cropped-img-actions">
-                        <button class="btn-cancel btn" (click)="cancelCrop()">Cancel</button>
-                        <button class="btn-save btn" (click)="saveCrop()">Save</button>
-                    </div>
-                </div>
-                }
-
-                @if(!preview && !showCropper){
-                <img src="../../../../assets/icons/Image.svg" alt="" id="image-icon">
-                <label for="img" class="img-label">Drop an image here or click to upload !</label>
-                }
-                @else if(!showCropper){
-                <div class="image-preview">
-                    <img [src]="preview" alt="" class="preview-img">
-                    <label for="img" class="preview-img-label">Change image</label>
-                </div>
-                }
-
-            </div>
-            <div class="form-footer">
-                <div class="details-container">
-                    <div class="eve-name eve-details">
-                        <label for="name" class="form-label">Event Name</label>
-                        <input type="text" name="name" id="name" formControlName="name" class="input-field"
-                            placeholder="Ex. Jhon's birthday">
-                    </div>
-                    <div class="eve-date eve-details">
-                        <label for="date" class="form-label">Event Date</label>
-                        <input type="date" name="date" id="date" formControlName="date" class="input-field"
-                            [placeholder]="eventData?.date?eventData?.date:'Select a date...'">
-                    </div>
-                    <div class="eve-cat eve-details">
-                        <label for="category" class="form-label">Event Category</label>
-                        <div class="category-list">
-                            <div class="cat-label input-field" (click)="expandCategory()">
-                                <div class="selected-value">{{selectedCategory?selectedCategory:'Select a option'}}
-                                </div>
-                                <img src="../../../../assets/icons/Arrow - Bottom.svg" alt="">
-                            </div>
-                            <ul [class]="categoryExpanded ? 'category-ul-expanded' : 'category-ul' "
-                                click="chooseCategory()">
-                                <li *ngFor="let option of categoryOptions" (click)="chooseCategory(option.label)"
-                                    [class]="selectedCategory===option.value ? 'selected' : 'lists'">
-                                    {{option.label}}
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="eve-btn">
-                    <button type="button" class="btn-cancel btn" (click)="onCancel()"> Cancel </button>
-                    <button type="submit" [disabled]="eventForm.invalid" class="btn-save btn">{{eventData?'Save
-                        Changes':'Save'}}</button>
-                </div>
-
-            </div>
-        </form>
+  <div class="event-form-container">
+    <div class="form-header">
+      <div class="label-form">{{ eventData ? 'Edit Event' : 'New Event' }}</div>
+      <button class="cancel-icon" type="button" (click)="onCancel()">
+        <img src="../../../../assets/icons/x.svg" alt="" />
+      </button>
     </div>
+    <form
+      (ngSubmit)="onSubmit()"
+      (click)="$event.stopPropagation()"
+      [formGroup]="eventForm"
+      class="event-form"
+    >
+      <div
+        [class.img-container]="!eventData && !showCropper"
+        (click)="$event.stopPropagation()"
+        [class.invalid]="eventForm.get('image')?.invalid && eventForm.get('image')?.touched"
+      >
+        <input
+          (change)="onFileSelected($event)"
+          (cancel)="$event.stopPropagation()"
+          type="file"
+          name="img"
+          src=""
+          id="img"
+        />
+
+        @if (showCropper) {
+          <div class="image-cropper-container">
+            <image-cropper
+              [imageChangedEvent]="imageChangedEvent"
+              [maintainAspectRatio]="true"
+              [aspectRatio]="1 / 1"
+              format="png"
+              (imageCropped)="imageCropped($event)"
+            ></image-cropper>
+            <div class="cropped-img-actions">
+              <button class="btn-cancel btn" type="button" (click)="cancelCrop()">Cancel</button>
+              <button class="btn-save btn" type="button" (click)="saveCrop()">Save</button>
+            </div>
+          </div>
+        } @else if (preview) {
+          <div class="image-preview">
+            <img [src]="preview" alt="" class="preview-img" />
+            <label for="img" (click)="$event.stopPropagation()" class="preview-img-label"
+              >Change image</label
+            >
+          </div>
+        } @else {
+          <img src="../../../../assets/icons/Image.svg" alt="" id="image-icon" />
+          <label for="img" (click)="$event.stopPropagation()" class="img-label"
+            >Drop an image here or click to upload !</label
+          >
+        }
+      </div>
+      @if (
+        eventForm.get('image')?.invalid &&
+        (eventForm.get('image')?.touched || eventForm.get('image')?.dirty)
+      ) {
+        <div class="error-msg">Image is required.</div>
+      }
+      <div class="form-footer">
+        <div class="details-container">
+          <div class="eve-name eve-details">
+            <label for="name" class="form-label">Event Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              formControlName="name"
+              class="input-field"
+              [class.invalid]="
+                eventForm.get('name')?.invalid &&
+                (eventForm.get('name')?.touched || eventForm.get('name')?.dirty)
+              "
+              placeholder="Ex. Jhon's birthday"
+            />
+            @if (
+              eventForm.get('name')?.invalid &&
+              (eventForm.get('name')?.touched || eventForm.get('name')?.dirty)
+            ) {
+              <div class="error-msg">Event Name is required.</div>
+            }
+          </div>
+          <div class="eve-date eve-details">
+            <label for="date" class="form-label">Event Date</label>
+            <input
+              type="date"
+              name="date"
+              id="date"
+              formControlName="date"
+              class="input-field"
+              [class.invalid]="
+                eventForm.get('date')?.invalid &&
+                (eventForm.get('date')?.touched || eventForm.get('date')?.dirty)
+              "
+              [placeholder]="eventData?.date ? eventData?.date : 'Select a date...'"
+            />
+            @if (
+              eventForm.get('date')?.invalid &&
+              (eventForm.get('date')?.touched || eventForm.get('date')?.dirty)
+            ) {
+              <div class="error-msg">Event Date is required.</div>
+            }
+          </div>
+          <div class="eve-cat eve-details">
+            <label for="category" class="form-label">Event Category</label>
+            <div class="category-list">
+              <div
+                class="cat-label input-field"
+                [class.invalid]="
+                  eventForm.get('category')?.invalid &&
+                  (eventForm.get('category')?.touched || eventForm.get('category')?.dirty)
+                "
+                (click)="expandCategory()"
+              >
+                <div class="selected-value">
+                  {{ selectedCategory ? selectedCategory : 'Select a option' }}
+                </div>
+                <img src="../../../../assets/icons/Arrow - Bottom.svg" alt="" />
+              </div>
+              <ul [class]="categoryExpanded ? 'category-ul-expanded' : 'category-ul'">
+                <li
+                  *ngFor="let option of categoryOptions"
+                  (click)="chooseCategory(option.label)"
+                  [class]="selectedCategory === option.value ? 'selected' : 'lists'"
+                >
+                  {{ option.label }}
+                </li>
+              </ul>
+            </div>
+            @if (eventForm.get('category')?.invalid && eventForm.get('category')?.touched) {
+              <div class="error-msg">Event Category is required.</div>
+            }
+          </div>
+        </div>
+
+        <div class="eve-btn">
+          <button type="button" class="btn-cancel btn" (click)="onCancel()">Cancel</button>
+          <button type="submit" [disabled]="eventForm.invalid" class="btn-save btn">
+            {{ eventData ? 'Save Changes' : 'Save' }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

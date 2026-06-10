@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { categoryOptions, dateFilters, Event, EventsData, EventsViewType } from '../../../utils/models/events';
+import {
+  categoryOptions,
+  dateFilters,
+  Event,
+  EventsData,
+  EventsViewType,
+} from '../../../utils/models/events';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { AppTitleService } from '../../../services/title.service';
 
@@ -11,7 +17,7 @@ import { AppTitleService } from '../../../services/title.service';
 })
 export class DashboardComponent implements OnInit {
   editEventData: any;
-  constructor(private appTitle: AppTitleService) { }
+  constructor(private appTitle: AppTitleService) {}
 
   viewType = EventsViewType.CARD;
   otherView = EventsViewType.LIST;
@@ -23,12 +29,12 @@ export class DashboardComponent implements OnInit {
   isSearchExpanded = false;
   categories = categoryOptions;
   isFilterExpanded = false;
-  selectedDateFilter = ''
+  selectedDateFilter = '';
   dateFilters = dateFilters;
-  selectedFilter = ''
+  selectedFilter = '';
   isSearching = false;
   searchQuery = '';
-  events: any[] = EventsData // your events array
+  events: any[] = EventsData; // your events array
   filteredEvents: any[] = [];
 
   // ✅ Must be declared as a class property
@@ -36,26 +42,25 @@ export class DashboardComponent implements OnInit {
   private destroy$ = new Subject<void>();
 
   ngOnInit(): void {
-    this.appTitle.set('Dashboard')
+    this.appTitle.set('Dashboard');
     this.filteredEvents = [...this.events];
-    this.searchTerm.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      takeUntil(this.destroy$)
-    ).subscribe((text) => {
-      this.searchQuery = text;
-      if (text.trim().length > 0) {
-        this.isSearching = true;
-        // ✅ Set here — fires only after 300ms pause
-        this.filteredEvents = this.events.filter(e =>
-          e.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-          e.category.toLowerCase().includes(this.searchQuery.toLowerCase())
-        );
-      } else {
-        this.isSearching = false;
-        this.filteredEvents = [...this.events];
-      }
-    });
+    this.searchTerm
+      .pipe(debounceTime(300), distinctUntilChanged(), takeUntil(this.destroy$))
+      .subscribe((text) => {
+        this.searchQuery = text;
+        if (text.trim().length > 0) {
+          this.isSearching = true;
+          // ✅ Set here — fires only after 300ms pause
+          this.filteredEvents = this.events.filter(
+            (e) =>
+              e.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+              e.category.toLowerCase().includes(this.searchQuery.toLowerCase()),
+          );
+        } else {
+          this.isSearching = false;
+          this.filteredEvents = [...this.events];
+        }
+      });
   }
 
   ngOnDestroy(): void {
@@ -64,7 +69,7 @@ export class DashboardComponent implements OnInit {
   }
 
   profileClickedEvent() {
-    this.profileClicked = !this.profileClicked
+    this.profileClicked = !this.profileClicked;
   }
 
   onFilterSelect(value: string) {
@@ -80,19 +85,23 @@ export class DashboardComponent implements OnInit {
   }
 
   onReset() {
-    this.isFilterExpanded = false
-    this.selectedFilter = ''
-    this.selectedDateFilter = ''
+    this.isFilterExpanded = false;
+    this.selectedFilter = '';
+    this.selectedDateFilter = '';
   }
 
   onApply() {
     if (this.selectedFilter) {
-      this.filteredEvents = this.events.filter(e => e.category.toLowerCase().includes(this.selectedFilter.toLowerCase()))
+      this.filteredEvents = this.events.filter((e) =>
+        e.category.toLowerCase().includes(this.selectedFilter.toLowerCase()),
+      );
     }
     if (this.selectedDateFilter) {
-      this.filteredEvents = this.events.filter(e => e.date.toLowerCase().includes(this.selectedDateFilter.toLowerCase()))
+      this.filteredEvents = this.events.filter((e) =>
+        e.date.toLowerCase().includes(this.selectedDateFilter.toLowerCase()),
+      );
     }
-    this.isFilterExpanded = false
+    this.isFilterExpanded = false;
   }
 
   onToggleSearch() {
@@ -128,16 +137,18 @@ export class DashboardComponent implements OnInit {
   }
 
   changeViewType() {
-    this.viewType = this.viewType === EventsViewType.CARD ? EventsViewType.LIST : EventsViewType.CARD;
-    this.otherView = this.otherView === EventsViewType.CARD ? EventsViewType.CARD : EventsViewType.LIST;
+    this.viewType =
+      this.viewType === EventsViewType.CARD ? EventsViewType.LIST : EventsViewType.CARD;
+    this.otherView =
+      this.otherView === EventsViewType.CARD ? EventsViewType.CARD : EventsViewType.LIST;
   }
 
   //Edit events methods
 
   recieveEditEvent(event: any) {
-    console.log(`Edit `)
-    console.log(event)
-    this.editEventData = event
+    console.log(`Edit `);
+    console.log(event);
+    this.editEventData = event;
     this.isUpdateEvent = true;
   }
 
@@ -149,8 +160,8 @@ export class DashboardComponent implements OnInit {
   }
 
   onDeleteConfirmed(eventData: Event) {
-    this.events = this.events.filter(e => e.id !== eventData.id);
-    this.filteredEvents = this.filteredEvents.filter(e => e.id !== eventData.id);
+    this.events = this.events.filter((e) => e.id !== eventData.id);
+    this.filteredEvents = this.filteredEvents.filter((e) => e.id !== eventData.id);
     this.isDeleteEvent = false;
     this.deleteEventData = undefined;
   }
@@ -160,7 +171,7 @@ export class DashboardComponent implements OnInit {
     this.deleteEventData = undefined;
   }
 
-  // add new event 
+  // add new event
 
   addNewEvent() {
     this.isUpdateEvent = true;
